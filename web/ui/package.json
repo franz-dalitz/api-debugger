@@ -1,7 +1,9 @@
 {
   "name": "api-debugger",
   "version": "1.0.0",
-  "scripts": {},
+  "scripts": {
+    "build": "npx tailwindcss -i ./input.css -o ./output.css --watch"
+  },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "daisyui": "^4.6.2",
