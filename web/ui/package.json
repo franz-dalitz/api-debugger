@@ -2,7 +2,7 @@
   "name": "api-debugger",
   "version": "1.0.0",
   "scripts": {
-    "build": "npx tailwindcss -i ./input.css -o ./output.css --watch"
+    "build": "npx tailwindcss -i ./style/tailwind/input.css -o ./style/tailwind/output.css --watch"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
