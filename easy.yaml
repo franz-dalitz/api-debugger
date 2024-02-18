@@ -1,0 +1,15 @@
+a: 1
+b: nice!
+c:
+  d: okay
+  e: oh mama
+list:
+  - name: prod
+    value: 123
+  - name: dev
+    value: 321
+implicit:
+  one:
+    description: first
+  two:
+    description: second
