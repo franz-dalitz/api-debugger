@@ -1,2 +1,5 @@
 run:
-	@go run cmd/api-debugger/main.go
+	@go run main.go
+
+image:
+	@docker build -t api-debugger .

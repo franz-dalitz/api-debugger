@@ -13,7 +13,7 @@ import (
 
 func main() {
 	// customize slog to use logfmt
-	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
+	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
 	slog.SetDefault(logger)
 
 	// load and log configuration
@@ -22,7 +22,7 @@ func main() {
 		slog.Error("failed to read config file")
 		log.Fatal(err)
 	}
-	slog.Info(fmt.Sprintf("successfully loaded the following config: %v", cfg))
+	slog.Debug(fmt.Sprintf("successfully loaded the following config: %v", cfg))
 
 	// set up routes and start server
 	mux := http.NewServeMux()
@@ -31,6 +31,7 @@ func main() {
 		slog.Error("failed to register routes")
 		log.Fatal(err)
 	}
+	slog.Debug("routes have been registered")
 	err = http.ListenAndServe(":8080", mux)
 	if err != nil {
 		slog.Error("http handler failure")
