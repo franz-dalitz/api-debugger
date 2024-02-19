@@ -1,0 +1,25 @@
+
+headers:
+  Content-Type:
+    # the contents of this section describe an "InputField"
+    type: dropdown
+    description: headers in the root section apply to every single request
+    locked: false
+    options:
+      - application/json
+      - text/html
+    default: application/json
+services:
+  some-service:
+    environments:
+      dev:
+        url: localhost:8080
+        paths:
+          /hello/{name}:
+            description: personalized greeting handler
+            variables:
+              name:
+                # InputField
+            methods:
+              GET:
+                # InputField
