@@ -13,11 +13,13 @@ import (
 
 func main() {
 	// customize slog to use logfmt
-	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
+	logger := slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{
+		Level: slog.LevelDebug,
+	}))
 	slog.SetDefault(logger)
 
 	// load and log configuration
-	cfg, err := config.LoadConfig("examples/config.yaml")
+	cfg, err := config.LoadConfig("config.yaml")
 	if err != nil {
 		slog.Error("failed to read config file")
 		log.Fatal(err)

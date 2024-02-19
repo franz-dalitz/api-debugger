@@ -1,0 +1,6 @@
+
+services:
+  api-debugger:
+    image: api-debugger:latest
+    container_name: api-debugger
+    ports: [8080:8080]
