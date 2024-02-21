@@ -1,6 +1,6 @@
 
 setup:
-	@npm i
+	@cd web/dependencies && npm i
 	@go mod download
 
 run:
@@ -10,10 +10,7 @@ bin:
 	@CGO_ENABLED=0 GOOS=linux go build -o ./api-debugger cmd/api-debugger/main.go
 
 style:
-	@npx tailwindcss -i input.css -o output.css
-
-wstyle:
-	@npx tailwindcss -i input.css -o output.css --watch
+	@cd web/dependencies && npx tailwindcss -i input.css -o output.css
 
 image:
 	@docker build -t api-debugger .
