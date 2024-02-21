@@ -3,7 +3,7 @@ package routes
 import (
 	"net/http"
 
-	"github.com/franz-dalitz/api-debugger/handlers"
+	"github.com/franz-dalitz/api-debugger/app/handlers"
 )
 
 func RegisterRoutes(mux *http.ServeMux) error {
@@ -15,8 +15,9 @@ func RegisterRoutes(mux *http.ServeMux) error {
 		http.ServeFile(w, r, "node_modules/htmx.org/dist/htmx.min.js")
 	})
 
-	// serve home template
+	// serve pages
 	mux.HandleFunc("/", handlers.RootHandler)
+	mux.HandleFunc("/hello", handlers.HelloHandler)
 
 	return nil
 }

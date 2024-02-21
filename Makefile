@@ -1,15 +1,22 @@
 
-run:
-	@go run cmd/api-debugger/main.go
+setup:
+	cd ui && npm i
+	cd app && go mod download
 
-uidev:
-	@npx tailwindcss -i input.css -o static/output.css --watch
+run:
+	@go run -C app cmd/api-debugger/main.go
+
+binary:
+	@CGO_ENABLED=0 GOOS=linux go build -C app -o ../api-debugger cmd/api-debugger/main.go
 
 style:
-	@npx tailwindcss -i input.css -o static/output.css
+	@cd ui && npx tailwindcss -i input.css -o style/output.css
 
-image:
-	@docker build -t api-debugger .
+wstyle:
+	@cd ui && npx tailwindcss -i input.css -o style/output.css --watch
 
-example:
-	@docker-compose -f examples/docker-compose.yaml up
+# image:
+# 	@docker build -t api-debugger .
+
+# example:
+# 	@docker-compose -f examples/docker-compose.yaml up

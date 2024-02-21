@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/franz-dalitz/api-debugger/config"
-	"github.com/franz-dalitz/api-debugger/routes"
+	"github.com/franz-dalitz/api-debugger/app/config"
+	"github.com/franz-dalitz/api-debugger/app/routes"
 )
 
 func main() {
@@ -21,8 +21,8 @@ func main() {
 	// load and log configuration
 	cfg, err := config.LoadConfig("config.yaml")
 	if err != nil {
-		slog.Error("failed to read config file")
-		log.Fatal(err)
+		slog.Error("failed to read config file", "err", err)
+		os.Exit(1)
 	}
 	slog.Debug(fmt.Sprintf("successfully loaded the following config: %v", cfg))
 
