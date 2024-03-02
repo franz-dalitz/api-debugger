@@ -6,7 +6,7 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-type Config struct {
+type Configuration struct {
 	Headers  map[string]InputField
 	Services map[string]Service
 }
@@ -38,15 +38,16 @@ type Path struct {
 	Methods     map[string]InputField
 }
 
-func LoadConfig(name string) (Config, error) {
-	data, err := os.ReadFile(name)
+var Config Configuration
+
+func LoadConfig() error {
+	data, err := os.ReadFile(ConfigFile)
 	if err != nil {
-		return Config{}, err
+		return err
 	}
-	var config Config
-	err = yaml.Unmarshal(data, &config)
+	err = yaml.Unmarshal(data, &Config)
 	if err != nil {
-		return Config{}, err
+		return err
 	}
-	return config, nil
+	return nil
 }

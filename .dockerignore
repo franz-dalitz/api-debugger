@@ -1,6 +1,9 @@
-example
+
 node_modules
 output.css
+htmx.min.js
+.gitignore
+config.yaml
+docker-compose.yaml
 Dockerfile
-Makefile
 Readme.md
