@@ -20,4 +20,5 @@ func ApplySlogSettings() {
 		Level: parseSlogLevel(LogLevel),
 	}))
 	slog.SetDefault(logger)
+	slog.Debug("applied settings to slog")
 }

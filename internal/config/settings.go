@@ -2,6 +2,7 @@ package config
 
 import (
 	"flag"
+	"log/slog"
 	"os"
 )
 
@@ -32,4 +33,10 @@ func LoadSettings() {
 
 	// apply settings that were just read
 	ApplySlogSettings()
+
+	// log results
+	slog.Debug("settings loaded successfully",
+		"config_file", ConfigFile,
+		"log_level", LogLevel,
+	)
 }

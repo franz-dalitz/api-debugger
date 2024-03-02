@@ -1,24 +1,42 @@
+
+environment_info:
+  dev: used for development
 headers:
   Content-Type:
-    # the contents of this section describe an "InputField"
+    # contents of this section describe an "InputField"
+    description: headers in root section apply to all requests
+    # type: how user may input value
+    # one of "text", "number" or "dropdown"
     type: dropdown
-    description: headers in the root section apply to every single request
-    locked: false
+    # options: only applicable if dropdown was picked, otherwise ignored
     options:
       - application/json
       - text/html
+    # default: initial value of InputField
     default: application/json
+    # locked: if true will be displayed with input disabled
+    locked: false
 services:
   some-service:
+    description: this services does something
+    #< can define headers, apply to all requests of service
     environments:
+      # if environment_info can be mapped it will be displayed
       dev:
+        #< can define headers, apply to all requests of environment
         url: localhost:8080
         paths:
           /hello/{name}:
-            description: personalized greeting handler
+            description: path for personalized greetings
+            #< can define headers, apply to all methods of path
             variables:
-              name:
-                # InputField
+              name: # InputField
+                description: name that will be greeted
+                type: text
+                default: Gopher
+                locked: false
             methods:
               GET:
-                # InputField
+                description: greets the specified name
+                #< can define headers, apply to this specific request
+                #< can define "payload", which is an InputField
