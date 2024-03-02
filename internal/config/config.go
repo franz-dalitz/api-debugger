@@ -28,7 +28,6 @@ type Service struct {
 }
 
 type Environment struct {
-	Extends string
 	Headers map[string]InputField
 	Url     string
 	Paths   map[string]Path

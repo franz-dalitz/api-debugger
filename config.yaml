@@ -1,5 +1,6 @@
 
 environment_info:
+  prod: live application used by customers
   dev: used for development
 headers:
   Content-Type:
@@ -22,10 +23,21 @@ services:
     #< can define headers, apply to all requests of service
     environments:
       # if environment_info can be mapped it will be displayed
-      dev:
-        #< can define headers, apply to all requests of environment
+      prod: &prod-base
         url: localhost:8080
+        paths: &prod-paths
+          /:
+            description: root handler path
+            methods:
+              GET:
+                description: serves the home page
+      dev:
+        # use yaml anchors to copy information from other environments
+        <<: *prod-base
+        #< can define headers, apply to all requests of environment
+        #< usually "url" should be overridden here
         paths:
+          <<: *prod-paths
           /hello/{name}:
             description: path for personalized greetings
             #< can define headers, apply to all methods of path
